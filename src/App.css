@@ -3,6 +3,25 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  /* Color palette */
+  --primary-1: #6757B7;
+  --primary-2: #4B38A8;
+  --primary-3: #311C99;
+  --primary-4: #22117B;
+  --primary-5: #17095F;
+
+  --secondary1-1: #BB4AA9;
+  --secondary1-2: #AB2996;
+  --secondary1-3: #9C0A85;
+  --secondary1-4: #7D026A;
+  --secondary1-5: #610052;
+
+  --secondary2-1: #429FA3;
+  --secondary2-2: #24B693;
+  --secondary2-3: #098085;
+  --secondary2-4: #02676B;
+  --secondary2-5: #004F53;
 }
 
 .logo {
