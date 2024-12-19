@@ -4,9 +4,19 @@ interface TextInputProps {
   label: string
   name: string
   type?: string
+  required?: boolean
+  error?: boolean
+  helperText?: string
 }
 
-export const TextInput: React.FC<TextInputProps> = ({ label, name, type }) => {
+export const TextInput: React.FC<TextInputProps> = ({
+  label,
+  name,
+  type,
+  required = false,
+  error = false,
+  helperText,
+}) => {
   return (
     <TextField
       label={label}
@@ -14,13 +24,14 @@ export const TextInput: React.FC<TextInputProps> = ({ label, name, type }) => {
       type={type}
       fullWidth
       margin="normal"
-      required
+      required={required}
+      error={error}
+      helperText={error ? helperText : ''}
       sx={inputStyles}
     />
   )
 }
 
-// Estilos reutilizables para los TextField
 const inputStyles = {
   '& .MuiInputLabel-root': {
     color: 'var(--color-gray)',
