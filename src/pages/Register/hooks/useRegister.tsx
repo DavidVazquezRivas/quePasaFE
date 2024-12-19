@@ -9,26 +9,30 @@ interface useRegisterProps {
   refreshToken: string
 }
 
-export const useRegister = ({
-  username,
-  email,
-  accessToken,
-  refreshToken,
-}: useRegisterProps) => {
+export const useRegister = () => {
   const { setUser } = useUser()
   const navigate = useNavigate()
 
-  // Guardar el usuario en el contexto
-  const user: User = {
+  const register = ({
     username,
     email,
     accessToken,
+    refreshToken,
+  }: useRegisterProps) => {
+    // Guardar el usuario en el contexto
+    const user: User = {
+      username,
+      email,
+      accessToken,
+    }
+    setUser(user)
+
+    // Guardar el token de refresco en localStorage
+    localStorage.setItem('refreshToken', refreshToken)
+
+    // Redirigir al usuario a la página de inicio
+    navigate('/')
   }
-  setUser(user)
 
-  // Guardar el token de refresco en localStrorage
-  localStorage.setItem('refreshToken', refreshToken)
-
-  // Redirigir al usuario a la página de inicio
-  navigate('/')
+  return { register }
 }

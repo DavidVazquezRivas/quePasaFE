@@ -17,6 +17,8 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
   const [emailError, setEmailError] = useState(false)
   const [usernameError, setUsernameError] = useState(false)
 
+  const { register } = useRegister()
+
   const usernameHelper =
     'This username is already taken. Please try another one.'
   const emailHelper = 'This email is already taken. Please try another one.'
@@ -48,7 +50,7 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
           setEmailError(false)
 
           // Podemos usar as string de forma segura, porque sabemos que los valores existen
-          useRegister({
+          register({
             username: data.username as string,
             email: data.email as string,
             accessToken: response.data?.accessToken as string,
