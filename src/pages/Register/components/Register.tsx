@@ -7,6 +7,7 @@ import { FormDataValues } from '@/types/formTypes'
 import { formatFormData } from '@/utilities/formatFormData'
 import { Box } from '@mui/material'
 import React, { useState } from 'react'
+import { useRegister } from '../hooks/useRegister'
 
 interface RegisterProps {
   onError: () => void
@@ -30,8 +31,6 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
     const fields: string[] = ['username', 'email', 'password']
     const data: FormDataValues = formatFormData(fields, formData)
 
-    console.log(data)
-
     registerUser(data)
       .then((response) => {
         if (response.errorMessage) {
@@ -47,8 +46,15 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
           // La petición ha sido exitosa
           setUsernameError(false)
           setEmailError(false)
+
+          // Podemos usar as string de forma segura, porque sabemos que los valores existen
+          useRegister({
+            username: data.username as string,
+            email: data.email as string,
+            accessToken: response.data?.accessToken as string,
+            refreshToken: response.data?.refreshToken as string,
+          })
         }
-        console.log('Response from registerUser:', response)
       })
       .catch(() => {
         // Es un error del servidor no esperado
