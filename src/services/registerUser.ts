@@ -16,7 +16,7 @@ export const registerUser = async (
       body: JSON.stringify(data),
     })
 
-    if (!response.ok) {
+    if (response.status === 500) {
       throw new Error(`Error ${response.status}: ${response.statusText}`)
     }
 
