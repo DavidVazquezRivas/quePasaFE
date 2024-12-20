@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Register } from './components/Register'
-import { ServerErrorToast } from '@/components/ServerErrorToast'
+import { ErrorToast } from '@/components/ErrorToast'
 
 export const RegisterPage: React.FC = () => {
   const [errorTriggered, setErrorTriggered] = useState(false)
@@ -8,9 +8,10 @@ export const RegisterPage: React.FC = () => {
   return (
     <>
       <Register onError={() => setErrorTriggered(true)} />
-      <ServerErrorToast
+      <ErrorToast
         trigger={errorTriggered}
         onClose={() => setErrorTriggered(false)}
+        message="The server could not process your request. Please try again later."
       />
     </>
   )

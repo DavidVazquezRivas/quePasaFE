@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Snackbar, Alert } from '@mui/material'
 
-interface ServerErrorToastProps {
+interface ErrorToastProps {
   trigger: boolean // Prop para activar el Toast
   onClose: () => void // Callback al cerrar el toast
+  message: string
 }
 
-export const ServerErrorToast: React.FC<ServerErrorToastProps> = ({
+export const ErrorToast: React.FC<ErrorToastProps> = ({
   trigger,
   onClose,
+  message,
 }) => {
   const [open, setOpen] = useState(false)
 
@@ -32,7 +34,7 @@ export const ServerErrorToast: React.FC<ServerErrorToastProps> = ({
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
       <Alert severity="error" onClose={() => setOpen(false)}>
-        The server could not process your request. Please try again later.
+        {message}
       </Alert>
     </Snackbar>
   )
