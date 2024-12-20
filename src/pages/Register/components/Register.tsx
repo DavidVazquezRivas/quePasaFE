@@ -6,8 +6,9 @@ import { registerUser } from '@/services/registerUser'
 import { FormDataType } from '@/types/dataTypes'
 import { formatFormData } from '@/utilities/formatFormData'
 import React, { useState } from 'react'
-import { useRegister } from '@/pages/Register/hooks/useRegister'
 import { Form } from '@/components/Form'
+import { useSession } from '@/hooks/useSession'
+import { useNavigate } from 'react-router-dom'
 
 interface RegisterProps {
   onError: () => void
@@ -17,7 +18,8 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
   const [emailError, setEmailError] = useState(false)
   const [usernameError, setUsernameError] = useState(false)
 
-  const { register } = useRegister()
+  const { createSession } = useSession()
+  const navigate = useNavigate()
 
   const usernameHelper =
     'This username is already taken. Please try another one.'
@@ -51,13 +53,16 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
           setUsernameError(false)
           setEmailError(false)
 
-          // Podemos usar as string de forma segura, porque sabemos que los valores existen
-          register({
-            username: data.username as string,
-            email: data.email as string,
-            accessToken: response.data?.accessToken as string,
-            refreshToken: response.data?.refreshToken as string,
+          // Crear la sesión del usuario
+          createSession({
+            username: data.username || '',
+            email: data.email || '',
+            accessToken: response.data?.accessToken || '',
+            refreshToken: response.data?.refreshToken || '',
           })
+
+          // Redirigir al usuario a la página de inicio
+          navigate('/')
         }
       })
       .catch(() => {
