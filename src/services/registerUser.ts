@@ -1,3 +1,4 @@
+import { authResponseAdapter } from '@/adapters/authResponseAdapter'
 import { API_URL } from '@/config/config'
 import { registerInterceptor } from '@/interceptors/registerInterceptor'
 import { FormDataType, RegisterDataType } from '@/types/dataTypes'
@@ -22,7 +23,7 @@ export const registerUser = async (
       throw new Error(`Error ${response.status}: ${response.statusText}`)
     }
 
-    return await response.json()
+    return await authResponseAdapter(response)
   } catch (error) {
     console.error('Registration failed: ', error)
 
