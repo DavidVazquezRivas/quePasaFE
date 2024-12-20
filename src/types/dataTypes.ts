@@ -3,7 +3,12 @@ export type FormDataType = {
 }
 
 export type RegisterDataType = {
-  username: string | null
-  email: string | null
-  password: string | null
+  username: string
+  email: string
+  password: string
+}
+
+export type LoginDataType = {
+  username: string
+  password: string
 }
