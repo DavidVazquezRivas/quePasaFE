@@ -1,11 +1,13 @@
 import { API_URL } from '@/config/config'
-import { FormDataType } from '@/types/dataTypes'
+import { registerInterceptor } from '@/interceptors/registerInterceptor'
+import { FormDataType, RegisterDataType } from '@/types/dataTypes'
 import { authResponseType } from '@/types/responseTypes'
 
 export const registerUser = async (
   data: FormDataType
 ): Promise<authResponseType> => {
   try {
+    const registerData: RegisterDataType = registerInterceptor(data)
     const url = `${API_URL}/auth/register`
 
     const response = await fetch(url, {
@@ -13,7 +15,7 @@ export const registerUser = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(registerData),
     })
 
     if (response.status === 500) {
