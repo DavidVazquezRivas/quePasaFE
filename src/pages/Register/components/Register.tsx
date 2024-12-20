@@ -3,7 +3,7 @@ import { SectionTitle } from '@/components/SectionTitle'
 import { SubmitButton } from '@/components/SubmitButton'
 import { TextInput } from '@/components/TextInput'
 import { registerUser } from '@/services/registerUser'
-import { FormDataValues } from '@/types/formTypes'
+import { FormDataType } from '@/types/dataTypes'
 import { formatFormData } from '@/utilities/formatFormData'
 import React, { useState } from 'react'
 import { useRegister } from '@/pages/Register/hooks/useRegister'
@@ -31,7 +31,7 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
 
     // Obtener los valores directamente desde FormData
     const fields: string[] = ['username', 'email', 'password']
-    const data: FormDataValues = formatFormData(fields, formData)
+    const data: FormDataType = formatFormData(fields, formData)
 
     registerUser(data)
       .then((response) => {

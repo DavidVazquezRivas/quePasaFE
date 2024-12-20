@@ -1,9 +1,9 @@
 import { API_URL } from '@/config/config'
-import { FormDataValues } from '@/types/formTypes'
+import { FormDataType } from '@/types/dataTypes'
 import { authResponseType } from '@/types/responseTypes'
 
 export const registerUser = async (
-  data: FormDataValues
+  data: FormDataType
 ): Promise<authResponseType> => {
   try {
     const url = `${API_URL}/auth/register`

@@ -1,3 +1,3 @@
-export type FormDataValues = {
+export type FormDataType = {
   [key: string]: string | null
 }
