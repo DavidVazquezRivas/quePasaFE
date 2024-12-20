@@ -5,9 +5,9 @@ import { TextInput } from '@/components/TextInput'
 import { registerUser } from '@/services/registerUser'
 import { FormDataValues } from '@/types/formTypes'
 import { formatFormData } from '@/utilities/formatFormData'
-import { Box } from '@mui/material'
 import React, { useState } from 'react'
-import { useRegister } from '../hooks/useRegister'
+import { useRegister } from '@/pages/Register/hooks/useRegister'
+import { Form } from '@/components/Form'
 
 interface RegisterProps {
   onError: () => void
@@ -65,7 +65,7 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={boxStyles}>
+    <Form onSubmit={handleSubmit}>
       <SectionTitle title="Register" />
       <TextInput
         required
@@ -90,20 +90,6 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
         linkedText="Log in"
         to="/login"
       />
-    </Box>
+    </Form>
   )
-}
-
-// Estilos reutilizables para el Box contenedor
-const boxStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  width: '100%',
-  maxWidth: 500,
-  margin: '0 auto',
-  padding: 4,
-  borderRadius: 2,
-  boxShadow: 3,
-  backgroundColor: 'var(--color-light-gray)',
 }
