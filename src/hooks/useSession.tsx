@@ -3,7 +3,7 @@ import { Session, User } from '@/types/models'
 
 interface createSessionProps {
   username: string
-  email: string
+  email?: string
   accessToken: string
   refreshToken: string
 }
