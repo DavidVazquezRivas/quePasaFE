@@ -10,8 +10,8 @@ export const authResponseAdapter = async (
   if (response.ok) {
     return {
       data: {
-        accessToken: responseData.accessToken,
-        refreshToken: responseData.refreshToken,
+        accessToken: responseData.data.accessToken,
+        refreshToken: responseData.data.refreshToken,
       },
       errorMessage: null,
     }
