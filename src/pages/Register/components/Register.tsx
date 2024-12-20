@@ -40,8 +40,10 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
           const errorMessageLower = response.errorMessage.toLowerCase()
 
           if (errorMessageLower.includes('username')) {
+            setEmailError(false)
             setUsernameError(true)
           } else if (errorMessageLower.includes('email')) {
+            setUsernameError(false)
             setEmailError(true)
           }
         } else {
