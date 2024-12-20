@@ -8,7 +8,10 @@ export const RegisterPage: React.FC = () => {
   return (
     <>
       <Register onError={() => setErrorTriggered(true)} />
-      <ServerErrorToast trigger={errorTriggered} />
+      <ServerErrorToast
+        trigger={errorTriggered}
+        onClose={() => setErrorTriggered(false)}
+      />
     </>
   )
 }

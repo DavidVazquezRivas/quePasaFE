@@ -3,10 +3,12 @@ import { Snackbar, Alert } from '@mui/material'
 
 interface ServerErrorToastProps {
   trigger: boolean // Prop para activar el Toast
+  onClose: () => void // Callback al cerrar el toast
 }
 
 export const ServerErrorToast: React.FC<ServerErrorToastProps> = ({
   trigger,
+  onClose,
 }) => {
   const [open, setOpen] = useState(false)
 
@@ -17,11 +19,16 @@ export const ServerErrorToast: React.FC<ServerErrorToastProps> = ({
     }
   }, [trigger])
 
+  const handleClose = () => {
+    setOpen(false)
+    onClose()
+  }
+
   return (
     <Snackbar
       open={open}
       autoHideDuration={3000}
-      onClose={() => setOpen(false)}
+      onClose={handleClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
       <Alert severity="error" onClose={() => setOpen(false)}>
