@@ -2,12 +2,13 @@ import { LinkedAnotation } from '@/components/LinkedAnotation'
 import { SectionTitle } from '@/components/SectionTitle'
 import { SubmitButton } from '@/components/SubmitButton'
 import { TextInput } from '@/components/TextInput'
-import { registerUser } from '@/services/registerUser'
-import { FormDataValues } from '@/types/formTypes'
+import { registerUser } from '@/services/authService'
+import { FormDataType } from '@/types/dataTypes'
 import { formatFormData } from '@/utilities/formatFormData'
-import { Box } from '@mui/material'
 import React, { useState } from 'react'
-import { useRegister } from '../hooks/useRegister'
+import { Form } from '@/components/Form'
+import { useSession } from '@/hooks/useSession'
+import { useNavigate } from 'react-router-dom'
 
 interface RegisterProps {
   onError: () => void
@@ -16,6 +17,9 @@ interface RegisterProps {
 export const Register: React.FC<RegisterProps> = ({ onError }) => {
   const [emailError, setEmailError] = useState(false)
   const [usernameError, setUsernameError] = useState(false)
+
+  const { createSession } = useSession()
+  const navigate = useNavigate()
 
   const usernameHelper =
     'This username is already taken. Please try another one.'
@@ -29,7 +33,7 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
 
     // Obtener los valores directamente desde FormData
     const fields: string[] = ['username', 'email', 'password']
-    const data: FormDataValues = formatFormData(fields, formData)
+    const data: FormDataType = formatFormData(fields, formData)
 
     registerUser(data)
       .then((response) => {
@@ -38,8 +42,10 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
           const errorMessageLower = response.errorMessage.toLowerCase()
 
           if (errorMessageLower.includes('username')) {
+            setEmailError(false)
             setUsernameError(true)
           } else if (errorMessageLower.includes('email')) {
+            setUsernameError(false)
             setEmailError(true)
           }
         } else {
@@ -47,13 +53,16 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
           setUsernameError(false)
           setEmailError(false)
 
-          // Podemos usar as string de forma segura, porque sabemos que los valores existen
-          useRegister({
-            username: data.username as string,
-            email: data.email as string,
-            accessToken: response.data?.accessToken as string,
-            refreshToken: response.data?.refreshToken as string,
+          // Crear la sesión del usuario
+          createSession({
+            username: data.username || '',
+            email: data.email || '',
+            accessToken: response.data?.accessToken || '',
+            refreshToken: response.data?.refreshToken || '',
           })
+
+          // Redirigir al usuario a la página de inicio
+          navigate('/')
         }
       })
       .catch(() => {
@@ -63,7 +72,7 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={boxStyles}>
+    <Form onSubmit={handleSubmit}>
       <SectionTitle title="Register" />
       <TextInput
         required
@@ -88,20 +97,6 @@ export const Register: React.FC<RegisterProps> = ({ onError }) => {
         linkedText="Log in"
         to="/login"
       />
-    </Box>
+    </Form>
   )
-}
-
-// Estilos reutilizables para el Box contenedor
-const boxStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  width: '100%',
-  maxWidth: 500,
-  margin: '0 auto',
-  padding: 4,
-  borderRadius: 2,
-  boxShadow: 3,
-  backgroundColor: 'var(--color-light-gray)',
 }
