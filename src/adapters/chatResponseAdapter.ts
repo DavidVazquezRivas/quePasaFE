@@ -1,3 +1,4 @@
+import { UserChat } from '@/types/models'
 import { ChatResponseType } from '@/types/responseTypes'
 
 export const chatResponseAdapter = async (
@@ -8,11 +9,11 @@ export const chatResponseAdapter = async (
   // Verificar si la respuesta tiene los datos esperados
   if (response.ok) {
     return {
-      data: {
-        id: responseData.data.id,
-        name: responseData.data.name,
-        unreadMessages: responseData.data.unreadMessages,
-      },
+      data: responseData.data.map((chat: UserChat) => ({
+        id: chat.id, // asegurarse de que id es un número
+        name: chat.name,
+        unreadMessages: chat.unreadMessages,
+      })),
       errorMessage: null,
     }
   }
