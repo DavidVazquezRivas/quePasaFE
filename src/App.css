@@ -13,7 +13,6 @@
   --color-medium-purple: #9575cd;
   --color-dark-purple: #512da8;
   --color-darker-purple: #311b92;
-
 }
 
 #app {
@@ -21,5 +20,17 @@
   height: 100%;
   display: grid;
   place-items: center;
-  background: var(--color-medium-purple)
+  background: var(--color-medium-purple);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
 }
