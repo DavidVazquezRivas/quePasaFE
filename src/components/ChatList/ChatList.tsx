@@ -7,6 +7,7 @@ import { Spinner } from '@/components/Spinner'
 import { ChatListHeader } from './ChatListHeader'
 import { POLLING_INTERVAL } from '@/config/config'
 import { generateLogo } from '@/utilities/generateLogo'
+import { Link } from 'react-router-dom'
 
 interface ChatListProps {
   selected?: number
@@ -43,14 +44,17 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
   const placeholderLogo = generateLogo('', '#9575cd')
   const chatCards = chats ? (
     chats.map((chat) => {
+      const chatUrl = `chat/${chat.id}`
       return (
-        <ChatCard
-          key={chat.id}
-          chatName={chat.name}
-          chatLogo={chat.logo || placeholderLogo}
-          unreadMessages={chat.unreadMessages}
-          selected={chat.id === selected}
-        />
+        <Link to={chatUrl}>
+          <ChatCard
+            key={chat.id}
+            chatName={chat.name}
+            chatLogo={chat.logo || placeholderLogo}
+            unreadMessages={chat.unreadMessages}
+            selected={chat.id === selected}
+          />
+        </Link>
       )
     })
   ) : (
@@ -75,6 +79,7 @@ const chatListContainerStyles = {
   maxHeight: '100%',
   backgroundColor: 'var(--color-light-gray)',
   boxShadow: 2,
+  borderRight: `1px solid var(--color-dark-gray)`,
 }
 
 const chatListStyles = {
