@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { Box } from '@mui/material'
 import { ChatCard } from './ChatCard'
 import { getUserChats } from '@/services/chatService'
-import { UserChat } from '@/types/models'
+import { User, UserChat } from '@/types/models'
 import { Spinner } from '@/components/Spinner'
 import { ChatListHeader } from './ChatListHeader'
 import { POLLING_INTERVAL } from '@/config/config'
 import { generateLogo } from '@/utilities/generateLogo'
 import { Link } from 'react-router-dom'
+import { useUser } from '@/hooks/useUser'
 
 interface ChatListProps {
   selected?: number
@@ -15,12 +16,13 @@ interface ChatListProps {
 
 export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
   const [chats, setChats] = React.useState<UserChat[] | null>(null)
+  const { user } = useUser()
 
   // Obtener los chats del usuario cada x tiempo
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const response = await getUserChats()
+        const response = await getUserChats(user as User)
         if (response.errorMessage) {
           console.error('Error controlado:', response.errorMessage)
         } else {
@@ -35,10 +37,10 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
     fetchChats()
 
     // Configurar el intervalo para ejecutarla cada 5 segundos
-    const intervalId = setInterval(fetchChats, POLLING_INTERVAL)
+    //const intervalId = setInterval(fetchChats, POLLING_INTERVAL)
 
     // Limpiar el intervalo al desmontar el componente
-    return () => clearInterval(intervalId)
+    //return () => clearInterval(intervalId)
   }, [])
 
   const placeholderLogo = generateLogo('', '#9575cd')
@@ -76,6 +78,7 @@ const chatListContainerStyles = {
   display: 'flex',
   flexDirection: 'column',
   width: 400,
+  minHeight: '100%',
   maxHeight: '100%',
   backgroundColor: 'var(--color-light-gray)',
   boxShadow: 2,

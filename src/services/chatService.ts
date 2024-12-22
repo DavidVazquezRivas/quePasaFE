@@ -1,13 +1,13 @@
 import { chatResponseAdapter } from '@/adapters/chatResponseAdapter'
 import { API_URL } from '@/config/config'
 import { authHeaderInterceptor } from '@/interceptors/authHeaderInterceptor'
+import { User } from '@/types/models'
 import { ChatResponseType } from '@/types/responseTypes'
 
-export const getUserChats = async (): Promise<ChatResponseType> => {
-  /* Endpoint not implemented yet
+export const getUserChats = async (user: User): Promise<ChatResponseType> => {
   try {
-    const authHeader = authHeaderInterceptor()
-    const url = `${API_URL}/api/chat`
+    const authHeader = authHeaderInterceptor(user)
+    const url = `${API_URL}/api/chats`
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -20,13 +20,13 @@ export const getUserChats = async (): Promise<ChatResponseType> => {
       throw new Error(`Error ${response.status}: ${response.statusText}`)
     }
 
-    return await response.json()
+    return await chatResponseAdapter(response)
   } catch (error) {
     console.error('Error fetching user chats:', error)
     throw error
   }
-  */
 
+  /*
   const mockData = {
     data: [
       {
@@ -139,5 +139,5 @@ export const getUserChats = async (): Promise<ChatResponseType> => {
     headers: { 'Content-Type': 'application/json' },
   })
 
-  return chatResponseAdapter(mockResponse)
+  return chatResponseAdapter(mockResponse)*/
 }
