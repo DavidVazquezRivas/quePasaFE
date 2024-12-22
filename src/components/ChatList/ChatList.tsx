@@ -37,10 +37,10 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
     fetchChats()
 
     // Configurar el intervalo para ejecutarla cada 5 segundos
-    //const intervalId = setInterval(fetchChats, POLLING_INTERVAL)
+    const intervalId = setInterval(fetchChats, POLLING_INTERVAL)
 
     // Limpiar el intervalo al desmontar el componente
-    //return () => clearInterval(intervalId)
+    return () => clearInterval(intervalId)
   }, [])
 
   const placeholderLogo = generateLogo('', '#9575cd')
