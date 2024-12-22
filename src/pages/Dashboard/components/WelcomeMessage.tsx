@@ -10,27 +10,8 @@ export const WelcomeMessage: React.FC<WelcomeMessageProps> = ({
   description,
 }) => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        flexDirection: 'column',
-        textAlign: 'center',
-        flexGrow: 1,
-        padding: 2,
-      }}
-      className="smooth-pattern"
-    >
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: 'bold',
-          marginBottom: 2,
-          color: 'var(--color-dark-gray)',
-        }}
-      >
+    <Box sx={containerStyle} className="smooth-pattern" component="main">
+      <Typography variant="h4" sx={typographyStyle}>
         {title}
       </Typography>
       <Typography variant="body1" sx={{ color: 'var(--color-gray)' }}>
@@ -38,4 +19,21 @@ export const WelcomeMessage: React.FC<WelcomeMessageProps> = ({
       </Typography>
     </Box>
   )
+}
+
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexDirection: 'column',
+  textAlign: 'center',
+  flexGrow: 1,
+  padding: 2,
+}
+
+const typographyStyle = {
+  fontWeight: 'bold',
+  marginBottom: 2,
+  color: 'var(--color-dark-gray)',
 }

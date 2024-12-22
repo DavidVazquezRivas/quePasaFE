@@ -64,7 +64,7 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
   )
 
   return (
-    <Box sx={chatListContainerStyles}>
+    <Box sx={chatListContainerStyles} component="aside">
       <ChatListHeader />
 
       <Box component={'ul'} sx={chatListStyles} className="scrollbar-custom">
