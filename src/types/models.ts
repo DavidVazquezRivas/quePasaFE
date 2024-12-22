@@ -10,6 +10,7 @@ export interface Session extends User {
 
 export interface UserChat {
   id: number
+  logo?: string
   name: string
   unreadMessages: number
 }

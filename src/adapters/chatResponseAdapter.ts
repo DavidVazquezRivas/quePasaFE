@@ -1,5 +1,6 @@
 import { UserChat } from '@/types/models'
 import { ChatResponseType } from '@/types/responseTypes'
+import { generateLogo } from '@/utilities/generateLogo'
 
 export const chatResponseAdapter = async (
   response: Response
@@ -10,7 +11,8 @@ export const chatResponseAdapter = async (
   if (response.ok) {
     return {
       data: responseData.data.map((chat: UserChat) => ({
-        id: chat.id, // asegurarse de que id es un número
+        id: chat.id,
+        logo: generateLogo(chat.name),
         name: chat.name,
         unreadMessages: chat.unreadMessages,
       })),

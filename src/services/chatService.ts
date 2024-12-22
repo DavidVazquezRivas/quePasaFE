@@ -1,3 +1,4 @@
+import { chatResponseAdapter } from '@/adapters/chatResponseAdapter'
 import { API_URL } from '@/config/config'
 import { authHeaderInterceptor } from '@/interceptors/authHeaderInterceptor'
 import { ChatResponseType } from '@/types/responseTypes'
@@ -132,7 +133,11 @@ export const getUserChats = async (): Promise<ChatResponseType> => {
     errorMessage: null,
   }
 
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(mockData), 500)
+  // Crear un Response simulado
+  const mockResponse = new Response(JSON.stringify(mockData), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
   })
+
+  return chatResponseAdapter(mockResponse)
 }

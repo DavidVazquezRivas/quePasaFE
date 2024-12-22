@@ -6,6 +6,7 @@ import { UserChat } from '@/types/models'
 import { Spinner } from '@/components/Spinner'
 import { ChatListHeader } from './ChatListHeader'
 import { POLLING_INTERVAL } from '@/config/config'
+import { generateLogo } from '@/utilities/generateLogo'
 
 interface ChatListProps {
   selected?: number
@@ -39,14 +40,14 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
     return () => clearInterval(intervalId)
   }, [])
 
+  const placeholderLogo = generateLogo('', '#9575cd')
   const chatCards = chats ? (
     chats.map((chat) => {
-      const logo = `https://picsum.photos/${10 + chat.id}`
       return (
         <ChatCard
           key={chat.id}
           chatName={chat.name}
-          chatLogo={logo}
+          chatLogo={chat.logo || placeholderLogo}
           unreadMessages={chat.unreadMessages}
           selected={chat.id === selected}
         />
