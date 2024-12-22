@@ -1,0 +1,27 @@
+/* Scrollbar para navegadores basados en WebKit (Chrome, Edge, Safari) */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--color-medium-purple);
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-dark-purple);
+}
+
+/* Scrollbar para Firefox (aislado usando @-moz-document) */
+@-moz-document url-prefix() {
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-medium-purple) transparent;
+  }
+}
