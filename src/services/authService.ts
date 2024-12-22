@@ -62,3 +62,30 @@ export const registerUser = async (
     throw error
   }
 }
+
+export const refreshToken = async (
+  refreshToken: string
+): Promise<AuthResponseType> => {
+  try {
+    const url = `${API_URL}/auth/refresh`
+    const authHeader = `Bearer ${refreshToken}`
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: authHeader,
+      },
+    })
+
+    if (response.status === 500) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`)
+    }
+
+    return await authResponseAdapter(response)
+  } catch (error) {
+    console.error('Token refresh failed: ', error)
+
+    throw error
+  }
+}
