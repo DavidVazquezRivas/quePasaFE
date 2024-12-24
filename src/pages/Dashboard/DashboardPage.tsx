@@ -1,5 +1,5 @@
 import { WelcomeMessage } from './components/WelcomeMessage'
-import { MainFrame } from '@/components/MainFrame'
+import { MainFrame } from '@/components/containers/MainFrame'
 
 export const DashboardPage: React.FC = () => {
   return (
