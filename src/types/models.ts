@@ -7,3 +7,10 @@ export interface User {
 export interface Session extends User {
   refreshToken: string | undefined
 }
+
+export interface UserChat {
+  id: number
+  logo?: string
+  name: string
+  unreadMessages: number
+}
