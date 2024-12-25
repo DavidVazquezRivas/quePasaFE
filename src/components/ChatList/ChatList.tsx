@@ -46,7 +46,7 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
   const placeholderLogo = generateLogo('', '#9575cd')
   const chatCards = chats ? (
     chats.map((chat) => {
-      const chatUrl = `chat/${chat.id}`
+      const chatUrl = `/chat/${chat.id}`
       return (
         <Link to={chatUrl}>
           <ChatCard
