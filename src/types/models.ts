@@ -14,3 +14,13 @@ export interface UserChat {
   name: string
   unreadMessages: number
 }
+
+export interface ExternalUser {
+  id: number
+  username: string
+}
+
+export enum ChatTypesEnum {
+  DIRECT = 'DIRECT',
+  GROUP = 'GROUP',
+}
