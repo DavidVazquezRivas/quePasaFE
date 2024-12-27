@@ -14,3 +14,29 @@ export interface UserChat {
   name: string
   unreadMessages: number
 }
+
+export enum ChatType {
+  PRIVATE,
+  GROUP
+}
+
+export enum MessageType {
+  TEXT,
+  IMAGE
+}
+
+
+export interface Chat {
+  id: number;
+  name: string;
+  type: ChatType;
+}
+
+export interface Message {
+  id: number;
+  content: string;
+  timestamp: string;
+  type: MessageType;
+  author: string;
+}
+
