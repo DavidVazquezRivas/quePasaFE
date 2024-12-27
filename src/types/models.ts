@@ -15,9 +15,14 @@ export interface UserChat {
   unreadMessages: number
 }
 
-export enum ChatType {
-  PRIVATE,
-  GROUP
+export interface ExternalUser {
+  id: number
+  username: string
+}
+
+export enum ChatTypesEnum {
+  DIRECT = 'DIRECT',
+  GROUP = 'GROUP',
 }
 
 export enum MessageType {
@@ -39,4 +44,3 @@ export interface Message {
   type: MessageType;
   author: string;
 }
-

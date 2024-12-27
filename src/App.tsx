@@ -6,6 +6,7 @@ import { RegisterPage } from '@/pages/Register/RegisterPage'
 import { UserProvider } from './contexts/UserContext'
 import { LoginPage } from './pages/Login/LoginPage'
 import { DashboardPage } from './pages/Dashboard/DashboardPage'
+import { CreateChatPage } from './pages/CreateChat/CreateChatPage'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="" element={<DashboardPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
+            <Route path="chat/create" element={<CreateChatPage />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>

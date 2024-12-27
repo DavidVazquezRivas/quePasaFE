@@ -1,4 +1,5 @@
 import TextField from '@mui/material/TextField'
+import { KeyboardEventHandler } from 'react'
 
 interface TextInputProps {
   label: string
@@ -7,6 +8,9 @@ interface TextInputProps {
   required?: boolean
   error?: boolean
   helperText?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onEnter?: () => void
+  value?: string
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -16,7 +20,17 @@ export const TextInput: React.FC<TextInputProps> = ({
   required = false,
   error = false,
   helperText,
+  onChange,
+  onEnter,
+  value,
 }) => {
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (event.key === 'Enter' && onEnter) {
+      event.preventDefault()
+      onEnter()
+    }
+  }
+
   return (
     <TextField
       label={label}
@@ -28,6 +42,9 @@ export const TextInput: React.FC<TextInputProps> = ({
       error={error}
       helperText={error ? helperText : ''}
       sx={inputStyles}
+      onChange={onChange}
+      onKeyDown={handleKeyDown}
+      value={value}
     />
   )
 }
@@ -41,12 +58,10 @@ const inputStyles = {
     borderColor: 'var(--color-gray)',
   },
   '& .MuiOutlinedInput-root': {
-    // Borde al pasar el ratón
     '&:hover .MuiOutlinedInput-notchedOutline': {
       borderColor: 'var(--color-medium-purple)',
     },
     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      // Enfocado
       borderColor: 'var(--color-dark-purple)',
     },
   },
