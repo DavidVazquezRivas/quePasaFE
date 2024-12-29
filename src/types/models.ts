@@ -8,16 +8,28 @@ export interface Session extends User {
   refreshToken: string | undefined
 }
 
-export enum ChatType {
-  PRIVATE,
-  GROUP
+
+export interface UserChat {
+  id: number
+  logo?: string
+  name: string
+  unreadMessages: number
+}
+
+export interface ExternalUser {
+  id: number
+  username: string
+}
+
+export enum ChatTypesEnum {
+  DIRECT = 'DIRECT',
+  GROUP = 'GROUP',
 }
 
 export enum MessageType {
   TEXT,
   IMAGE
 }
-
 
 export interface Chat {
   id: number;
@@ -32,4 +44,3 @@ export interface Message {
   type: MessageType;
   author: string;
 }
-
