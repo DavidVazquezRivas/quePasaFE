@@ -8,6 +8,7 @@ export interface Session extends User {
   refreshToken: string | undefined
 }
 
+
 export interface UserChat {
   id: number
   logo?: string
@@ -29,7 +30,6 @@ export enum MessageType {
   TEXT,
   IMAGE
 }
-
 
 export interface Chat {
   id: number;
