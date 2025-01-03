@@ -70,7 +70,7 @@ export const CreateChatForm: React.FC<CreateChatFormProps> = ({ onError }) => {
       } else {
         // Chat creado correctamente
         const url = response.data?.id
-          ? `/chats/${response.data.id}`
+          ? `/chat/${response.data.id}`
           : '/dashboard'
         navigate(url)
       }
