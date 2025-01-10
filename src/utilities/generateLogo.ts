@@ -39,7 +39,7 @@ const hashStringToNumber = (text: string): number => {
 }
 
 // Convertir el hash en un color HSL consistente
-const getConsistentColor = (text: string): string => {
+export const getConsistentColor = (text: string): string => {
   const hash = hashStringToNumber(text)
   const hue = hash % 360 // Tono entre 0 y 360
   const saturation = 70 // Saturación fija para colores vivos
