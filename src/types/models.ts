@@ -25,22 +25,17 @@ export enum ChatTypesEnum {
   GROUP = 'GROUP',
 }
 
-export enum MessageType {
-  TEXT,
-  IMAGE
-}
-
-
-export interface Chat {
-  id: number;
-  name: string;
-  type: ChatType;
-}
-
 export interface Message {
-  id: number;
-  content: string;
-  timestamp: string;
-  type: MessageType;
-  author: string;
+  id: number
+  chatId: number
+  senderId: number
+  senderName: string
+  content: string
+  createdAt: string
+  type: MessageTypesEnum
+}
+
+export enum MessageTypesEnum {
+  TEXT = 'TEXT',
+  IMAGE = 'IMAGE',
 }

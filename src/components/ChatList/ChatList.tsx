@@ -9,6 +9,7 @@ import { POLLING_INTERVAL } from '@/config/config'
 import { generateLogo } from '@/utilities/generateLogo'
 import { Link } from 'react-router-dom'
 import { useUser } from '@/hooks/useUser'
+import { areObjectsEqualInOrder } from '@/utilities/objectEquals'
 
 interface ChatListProps {
   selected?: number
@@ -26,6 +27,11 @@ export const ChatList: React.FC<ChatListProps> = ({ selected = 0 }) => {
         if (response.errorMessage) {
           console.error('Error controlado:', response.errorMessage)
         } else {
+          if (areObjectsEqualInOrder(chats, response.data)) {
+            console.log('No hay cambios en los chats')
+            return
+          }
+          console.log('Chats actualizados')
           setChats(response.data)
         }
       } catch (error) {
