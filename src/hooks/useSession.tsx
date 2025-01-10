@@ -26,7 +26,9 @@ export const useSession = () => {
     }
     setUser(newUser)
 
-    // Guardar token de refresco en localStorage
+    // Guardar datos y token de refresco en localStorage
+    localStorage.setItem('username', username || '')
+    localStorage.setItem('email', email || '')
     localStorage.setItem('refreshToken', refreshToken)
   }
 
@@ -42,10 +44,12 @@ export const useSession = () => {
     // Se extrae así porque en caso de que no exista el token de refresco, devuelve 'undefined' como string
     const refreshToken: string =
       localStorage.getItem('refreshToken') || 'undefined'
+    const storedUsername = localStorage.getItem('username') || ''
+    const storedEmail = localStorage.getItem('email') || ''
 
     return {
-      username: user?.username,
-      email: user?.email,
+      username: user?.username ?? storedUsername,
+      email: user?.email ?? storedEmail,
       accessToken: user?.accessToken,
       refreshToken: refreshToken === 'undefined' ? undefined : refreshToken,
     }
