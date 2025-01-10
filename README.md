@@ -32,3 +32,54 @@ To run this project, ensure you have the following installed on your system:
    ```bash
    npm run dev
    
+---
+
+## System Design Diagrams
+
+Below is an overview of the system's design, covering the database model, use case diagram, and C4 model. Each section provides a visual representation of the architecture and functionality.
+
+
+### **Database Model**
+The database model illustrates the structure of the application's data and the relationships between entities. This diagram serves as a blueprint for the database schema, helping to understand how data is organized and accessed.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7de8ddfd-f024-46ed-b1b1-61c826172efc" alt="Database Model">
+</div>
+
+### **Use Case Diagram**
+The use case diagram outlines the key interactions between users and the system. It highlights the primary functionalities and shows the roles of different actors, making it easier to grasp the overall workflow.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/1517f37a-d36a-4699-80df-60d0714ce298" alt="Use Case Diagram">
+</div>
+
+## **C4 Model**
+
+The C4 model provides a structured way to visualize the system's architecture across multiple levels of abstraction. Below are the context, container, and component diagrams:
+
+### **Context**
+The context diagram presents a high-level view of the system and its interactions with external entities (users, services, or other systems). It answers "what does this system do?" and "who interacts with it?".
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/66828cf8-f3cc-4cb5-bad7-c28cac3de747" alt="Context Diagram">
+</div>
+
+### **Containers**
+The container diagram dives deeper, showcasing the major components (e.g., applications, databases, and services) and how they communicate. This view helps understand the system's infrastructure and deployment.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/2bcb549b-81ff-4222-a02a-dfe9f672722d" alt="Container Diagram">
+</div>
+
+### **Components**
+The component diagram focuses on the internal structure of a specific container, detailing the key modules and their interactions. It provides insight into how specific functionalities are implemented.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/15304270-2572-49a6-aef6-de8ed40833fb" alt="Component Diagram">
+</div>
+
+These diagrams collectively provide a comprehensive view of the system's design, aiding both development and documentation efforts.
+
+
+   
+   
